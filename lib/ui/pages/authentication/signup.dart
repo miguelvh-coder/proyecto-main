@@ -93,7 +93,7 @@ class _FirebaseSignUpState extends State<SignUp> {
                           },
                         ),
                         const SizedBox(
-                          height: 80,
+                          height: 60,
                         ),
 
                         //toneladas de código para adornar un botón
@@ -130,8 +130,8 @@ class _FirebaseSignUpState extends State<SignUp> {
                               },
                               style: TextButton.styleFrom(
                                 foregroundColor: Colors.white,
-                                padding: const EdgeInsets.all(16.0),
-                                textStyle: const TextStyle(fontSize: 20),
+                                padding: const EdgeInsets.all(14.0),
+                                textStyle: const TextStyle(fontSize: 18),
                               ),
                               child: const Text("Crear")),
                             ],

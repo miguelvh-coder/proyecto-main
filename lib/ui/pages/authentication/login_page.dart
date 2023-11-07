@@ -87,20 +87,48 @@ class _LoginPageState extends State<LoginPage> {
                       },
                     ),
                     const SizedBox(
-                      height: 60,
+                      height: 70,
                     ),
 
-                    OutlinedButton(
-                        onPressed: () async {
-                          // this line dismiss the keyboard by taking away the focus of the TextFormField and giving it to an unused
-                          FocusScope.of(context).requestFocus(FocusNode());
-                          final form = _formKey.currentState;
-                          form!.save();
-                          if (_formKey.currentState!.validate()) {
-                            await _login(controllerEmail.text, controllerPassword.text);
-                          }
-                        },
-                        child: const Text("Ingresar")),
+
+                    //toneladas de código para adornar un botón
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(40),
+                      child: Stack(
+                        children: <Widget>[
+                          Positioned.fill(
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: <Color>[
+                                    Color.fromARGB(255, 11, 232, 187),
+                                    Color.fromARGB(255, 48, 144, 241),
+                                    Color(0xFF42A5F5),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () async {
+                              // this line dismiss the keyboard by taking away the focus of the TextFormField and giving it to an unused
+                              FocusScope.of(context).requestFocus(FocusNode());
+                              final form = _formKey.currentState;
+                              form!.save();
+                              if (_formKey.currentState!.validate()) {
+                                await _login(controllerEmail.text, controllerPassword.text);
+                              }
+                            },
+                            style: TextButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.all(14.0),
+                              textStyle: const TextStyle(fontSize: 18),
+                            ),
+                          child: const Text("Ingresar")),
+                        ],
+                      ),
+                    ),
+
                   ]),
             ),
 
