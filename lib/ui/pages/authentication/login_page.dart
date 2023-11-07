@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -47,45 +47,47 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     const Text(
                       "Iniciar sesión",
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 28),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 40,
                     ),
                     TextFormField(
+                      cursorColor: Colors.green,
                       keyboardType: TextInputType.emailAddress,
                       controller: controllerEmail,
                       decoration:
                           const InputDecoration(labelText: "Email address"),
                       validator: (String? value) {
                         if (value!.isEmpty) {
-                          return "Enter email";
+                          return "Ingrese su email";
                         } else if (!value.contains('@')) {
-                          return "Enter valid email address";
+                          return "Ingrese una dirección de email válido";
                         }
                         return null;
                       },
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 30,
                     ),
 
                     TextFormField(
+                      cursorColor: Colors.green,
                       controller: controllerPassword,
-                      decoration: const InputDecoration(labelText: "Password"),
+                      decoration: const InputDecoration(labelText: "Contraseña"),
                       keyboardType: TextInputType.number,
                       obscureText: true,
                       validator: (String? value) {
                         if (value!.isEmpty) {
-                          return "Enter password";
+                          return "Ingrese la contraseña";
                         } else if (value.length < 6) {
-                          return "Password should have at least 6 characters";
+                          return "La contraseña debe tener al menos 6 dígitos";
                         }
                         return null;
                       },
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 60,
                     ),
 
                     OutlinedButton(
