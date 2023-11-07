@@ -96,6 +96,7 @@ class _FirebaseSignUpState extends State<SignUp> {
                           height: 80,
                         ),
 
+                        //toneladas de código para adornar un botón
                         ClipRRect(
                           borderRadius: BorderRadius.circular(40),
                           child: Stack(
@@ -136,6 +137,7 @@ class _FirebaseSignUpState extends State<SignUp> {
                             ],
                           ),
                         ),
+
                       ]),
                 ))));
   }
