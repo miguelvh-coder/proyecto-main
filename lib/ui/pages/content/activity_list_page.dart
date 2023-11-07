@@ -36,11 +36,6 @@ class _ActivityListPageState extends State<ActivityListPage> {
             onPressed: () {
               _logout();
             }),
-        IconButton(
-            icon: const Icon(Icons.access_time),
-            onPressed: () {
-              userController.simulateProcess();
-            }),
       ]),
       body: Center(child: _getXlistView()),
       floatingActionButton: FloatingActionButton(

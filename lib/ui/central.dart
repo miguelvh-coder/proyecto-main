@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'pages/authentication/login_page.dart';
-import 'pages/authentication/signup.dart';
 import 'pages/content/activity_list_page.dart';
 
 
@@ -15,7 +14,6 @@ class Central extends StatelessWidget {
     AuthenticationController authenticationController = Get.find();
     return Obx(() => authenticationController.isLogged
         ? const ActivityListPage()
-        : const LoginPage());
-        //: const SignUp());
+        : const ActivityListPage());
   }
 }
