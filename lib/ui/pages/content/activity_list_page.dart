@@ -37,7 +37,15 @@ class _ActivityListPageState extends State<ActivityListPage> {
               _logout();
             }),
       ]),
-      body: Center(child: _getXlistView()),
+      body: Container(
+        
+          padding: const EdgeInsets.all(60),
+          child: Center(
+            child: _getXlistView()
+          )
+      ),
+      
+
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           logInfo("Add activity");
