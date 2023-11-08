@@ -41,7 +41,16 @@ class _ActivityListPageState extends State<ActivityListPage> {
         
           padding: const EdgeInsets.all(60),
           child: Center(
-            child: _getXlistView()
+            child: Column(
+              children:[
+                const Text("PENDIENTE", style: TextStyle(color: Color.fromARGB(255, 200, 90, 90), fontSize: 24)),
+                const SizedBox(height: 20),
+                Expanded(child: _getXlistView()),
+                const Text("FINALIZADO", style: TextStyle(color: Color.fromARGB(255, 90, 200, 90), fontSize: 24)),
+                const SizedBox(height: 20),
+                Expanded(child:_endedActivities()),
+              ]
+            )
           )
       ),
       
@@ -55,6 +64,8 @@ class _ActivityListPageState extends State<ActivityListPage> {
       ),
     );
   }
+
+
 
   Widget _getXlistView() {
     return Obx(
@@ -78,9 +89,11 @@ class _ActivityListPageState extends State<ActivityListPage> {
               userController.deleteUser(user.id!);
             },
             child: Card(
+              shadowColor: const Color.fromARGB(255, 255, 81, 81),
+              color: const Color.fromARGB(180, 255, 255, 255),
               child: ListTile(
-                title: Text(user.name),
-                subtitle: Text(user.email),
+                title: const Text("proyecto"), //user.name
+                subtitle: const Text("Hacer la app de móvil"), //user.email
                 onTap: () {
                   Get.to(() => const EditUserPage(),
                       arguments: [user, user.id]);
@@ -92,4 +105,57 @@ class _ActivityListPageState extends State<ActivityListPage> {
       ),
     );
   }
+
+
+
+
+
+  Widget _endedActivities() {
+    return Obx(
+      () => ListView.builder(
+        itemCount: userController.users.length,
+        itemBuilder: (context, index) {
+          User user = userController.users[index];
+          return Dismissible(
+            key: UniqueKey(),
+            background: Container(
+                color: Colors.red,
+                alignment: Alignment.centerLeft,
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 20),
+                  child: Text(
+                    "Deleting",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                )),
+            onDismissed: (direction) {
+              userController.deleteUser(user.id!);
+            },
+            child: Card(
+              shadowColor: const Color.fromARGB(255, 81, 255, 81),
+              color: const Color.fromARGB(180, 255, 255, 255),
+              child: ListTile(
+                title: const Text("proyecto"), //user.name
+                subtitle: const Text("Hacer la interfaz"), //user.email
+                onTap: () {
+                  Get.to(() => const EditUserPage(),
+                      arguments: [user, user.id]);
+                },
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+
+
+
+
+
+
+
+
+
 }

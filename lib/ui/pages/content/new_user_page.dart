@@ -8,7 +8,7 @@ class NewUserPage extends StatefulWidget {
   const NewUserPage({Key? key}) : super(key: key);
 
   @override
-  _NewUserPageState createState() => _NewUserPageState();
+   State<NewUserPage> createState() => _NewUserPageState();
 }
 
 class _NewUserPageState extends State<NewUserPage> {

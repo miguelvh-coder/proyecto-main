@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:loggy/loggy.dart';
 
-import '../models/user.dart';
+import '../models/activity.dart';
 import '../repositories/repository.dart';
 
 class ActivityUseCase {
@@ -9,17 +9,17 @@ class ActivityUseCase {
 
   ActivityUseCase();
 
-  Future<List<User>> getUsers() async {
+  Future<List<Activity>> getActivities() async {
     logInfo("Getting users  from UseCase");
-    return await _repository.getUsers();
+    return await _repository.getActivities();
   }
 
-  Future<void> addUser(User user) async => await _repository.addUser(user);
+  Future<void> addActivity(Activity act) async => await _repository.addActivity(act);
 
-  Future<void> updateUser(User user) async =>
-      await _repository.updateUser(user);
+  Future<void> updateActivity(Activity act) async =>
+      await _repository.updateActivity(act);
 
-  deleteUser(int id) async => await _repository.deleteUser(id);
+  deleteActivity(int id) async => await _repository.deleteActivity(id);
 
   simulateProcess() async => await _repository.simulateProcess();
 }

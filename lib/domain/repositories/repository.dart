@@ -2,10 +2,13 @@ import 'package:f_web_authentication/data/datasources/remote/authentication_data
 
 import '../../data/datasources/remote/user_datasource.dart';
 import '../models/user.dart';
+import '../models/activity.dart';
+import '../../data/datasources/remote/activity_datasource.dart';
 
 class Repository {
   late AuthenticationDatatasource _authenticationDataSource;
   late UserDataSource _userDatatasource;
+  late ActivityDataSource _actDatatasource;
   String token = "";
 
   // the base url of the API should end without the /
@@ -38,6 +41,19 @@ class Repository {
   Future<bool> deleteUser(int id) async =>
       await _userDatatasource.deleteUser(id);
 
+
+
+  Future<List<Activity>> getActivities() async => await _actDatatasource.getActivities();
+
+  Future<bool> addActivity(Activity act) async =>
+      await _actDatatasource.addActivity(act);
+
+  Future<bool> updateActivity(Activity act) async =>
+      await _actDatatasource.updateActivity(act);
+
+  Future<bool> deleteActivity(int id) async =>
+      await _actDatatasource.deleteActivity(id);
+
   Future<bool> simulateProcess() async =>
-      await _userDatatasource.simulateProcess(_baseUrl, token);
+      await _actDatatasource.simulateProcess(_baseUrl, token);//cambiar luego a 
 }
