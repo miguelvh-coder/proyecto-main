@@ -106,8 +106,8 @@ class _FirebaseSignUpState extends State<SignUp> {
                                   decoration: const BoxDecoration(
                                     gradient: LinearGradient(
                                       colors: <Color>[
-                                        Color.fromARGB(255, 11, 232, 187),
-                                        Color.fromARGB(255, 48, 144, 241),
+                                        Color.fromARGB(255, 255, 164, 80),
+                                        Color.fromARGB(255, 83, 115, 255),
                                         Color(0xFF42A5F5),
                                       ],
                                     ),
