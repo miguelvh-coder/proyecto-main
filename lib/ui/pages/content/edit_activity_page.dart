@@ -27,7 +27,7 @@ class _EditUserPageState extends State<EditActivityPage> {
     controllerLocation.text = activity.location;
     return Scaffold(
       appBar: AppBar(
-        title: Text("${activity.name}"),
+        title: Text(activity.name),
       ),
       body: Padding(
         padding: const EdgeInsets.all(30.0),
@@ -85,10 +85,25 @@ class _EditUserPageState extends State<EditActivityPage> {
                                 description: controllerDescription.text,
                                 date: controllerDate.text,
                                 location: controllerLocation.text,
+                                ended: false));
+                            Get.back();
+                          },
+                          child: const Text("Actualizar"))),
+
+                  Expanded(
+                      flex: 2,
+                      child: ElevatedButton(
+                          onPressed: () async {
+                            await actController.updateActivity(Activity(
+                                id: activity.id,
+                                name: activity.name,
+                                description: controllerDescription.text,
+                                date: controllerDate.text,
+                                location: controllerLocation.text,
                                 ended: true));
                             Get.back();
                           },
-                          child: const Text("Actualizar")))
+                          child: const Text("Finalizar actividad"))),
                 ],
               ),
             )
