@@ -1,15 +1,16 @@
-import 'package:f_web_authentication/ui/pages/content/edit_user_page.dart';
+//import 'package:f_web_authentication/ui/pages/content/edit_user_page.dart';
 import 'package:f_web_authentication/ui/pages/content/edit_activity_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loggy/loggy.dart';
 
-import '../../../domain/models/user.dart';
+//import '../../../domain/models/user.dart';
 import '../../../domain/models/activity.dart';
 import '../../controller/authentication_controller.dart';
 import '../../controller/user_controller.dart';
 import '../../controller/activity_controller.dart';
-import 'new_user_page.dart';
+//import 'new_user_page.dart';
+import 'new_activity.dart';
 
 class ActivityListPage extends StatefulWidget {
   const ActivityListPage({super.key});
@@ -65,7 +66,7 @@ class _ActivityListPageState extends State<ActivityListPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           logInfo("Add activity");
-          Get.to(() => const NewUserPage());
+          Get.to(() => const NewActivityPage());
         },
         child: const Icon(Icons.add),
       ),
@@ -145,7 +146,7 @@ class _ActivityListPageState extends State<ActivityListPage> {
                 title: Text(eacties.name), //user.name
                 subtitle: Text(eacties.date), //user.email
                 onTap: () {
-                  Get.to(() => const EditUserPage(),
+                  Get.to(() => const EditActivityPage(),
                       arguments: [eacties, eacties.id]);
                 },
               ),

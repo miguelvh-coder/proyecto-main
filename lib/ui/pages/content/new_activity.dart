@@ -58,16 +58,21 @@ class _NewActivityPageState extends State<NewActivityPage> {
                 decoration: const InputDecoration(
                   labelText: 'Descripción de la actividad',
                 )),
-            const SizedBox(height: 30,),
+            const SizedBox(height: 80,),
 
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+                  const SizedBox(width: 400,),
                   Expanded(
                       flex: 2,
                       child: ElevatedButton(
+                        style:  ElevatedButton.styleFrom(
+                          textStyle: const TextStyle(fontSize: 22),
+                          padding: const EdgeInsets.all(18.0),
+                        ),
                           onPressed: () async {
                             await actController.addEAct(Activity(
                                 name: controllerName.text,
@@ -77,7 +82,8 @@ class _NewActivityPageState extends State<NewActivityPage> {
                                 ended: false));
                             Get.back();
                           },
-                          child: const Text("Guardar")))
+                          child: const Text("Guardar"))),
+                    const SizedBox(width: 400,),
                 ],
               ),
             )
