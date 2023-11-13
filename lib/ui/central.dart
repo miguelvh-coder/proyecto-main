@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'pages/content/activity_list_page.dart';
+import 'pages/authentication/login_page.dart';
 
 
 class Central extends StatelessWidget {

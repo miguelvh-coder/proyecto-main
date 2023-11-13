@@ -1,11 +1,14 @@
 import 'package:f_web_authentication/ui/pages/content/edit_user_page.dart';
+import 'package:f_web_authentication/ui/pages/content/edit_activity_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loggy/loggy.dart';
 
 import '../../../domain/models/user.dart';
+import '../../../domain/models/activity.dart';
 import '../../controller/authentication_controller.dart';
 import '../../controller/user_controller.dart';
+import '../../controller/activity_controller.dart';
 import 'new_user_page.dart';
 
 class ActivityListPage extends StatefulWidget {
@@ -17,6 +20,7 @@ class ActivityListPage extends StatefulWidget {
 
 class _ActivityListPageState extends State<ActivityListPage> {
   UserController userController = Get.find();
+  //ActivityController actController = Get.find();
   AuthenticationController authenticationController = Get.find();
 
   _logout() async {
