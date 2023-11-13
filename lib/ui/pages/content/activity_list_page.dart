@@ -77,9 +77,9 @@ class _ActivityListPageState extends State<ActivityListPage> {
   Widget _getXlistView() {
     return Obx(
       () => ListView.builder(
-        itemCount: actController.rActs.length,  //gActs
+        itemCount: actController.gActs.length,  //gActs
         itemBuilder: (context, index) {
-          Activity gactivity = actController.rActs[index];
+          Activity gactivity = actController.gActs[index];
           return Dismissible(
             key: UniqueKey(),
             background: Container(
@@ -120,9 +120,9 @@ class _ActivityListPageState extends State<ActivityListPage> {
   Widget _endedActivities() {
     return Obx(
       () => ListView.builder(
-        itemCount: userController.users.length,
+        itemCount: actController.eActs.length,
         itemBuilder: (context, index) {
-          User user = userController.users[index];
+          Activity eacties = actController.eActs[index];
           return Dismissible(
             key: UniqueKey(),
             background: Container(
@@ -136,17 +136,17 @@ class _ActivityListPageState extends State<ActivityListPage> {
                   ),
                 )),
             onDismissed: (direction) {
-              userController.deleteUser(user.id!);
+              actController.deleteAct(eacties.id!);
             },
             child: Card(
               shadowColor: const Color.fromARGB(255, 81, 255, 81),
               color: const Color.fromARGB(180, 255, 255, 255),
               child: ListTile(
-                title: const Text("proyecto"), //user.name
-                subtitle: const Text("Hacer la interfaz"), //user.email
+                title: Text(eacties.name), //user.name
+                subtitle: Text(eacties.date), //user.email
                 onTap: () {
                   Get.to(() => const EditUserPage(),
-                      arguments: [user, user.id]);
+                      arguments: [eacties, eacties.id]);
                 },
               ),
             ),
