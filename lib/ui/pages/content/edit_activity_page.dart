@@ -66,7 +66,7 @@ class _EditUserPageState extends State<EditActivityPage> {
                   labelText: 'Descripción',
                 )),
             const SizedBox(
-              height: 20,
+              height: 100,
             ),
 
 
@@ -76,8 +76,12 @@ class _EditUserPageState extends State<EditActivityPage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Expanded(
-                      flex: 2,
+                      flex: 1,
                       child: ElevatedButton(
+                        style:  ElevatedButton.styleFrom(
+                          textStyle: const TextStyle(fontSize: 26),
+                          padding: const EdgeInsets.all(18.0),
+                        ),
                           onPressed: () async {
                             await actController.updateActivity(Activity(
                                 id: activity.id,
@@ -89,10 +93,17 @@ class _EditUserPageState extends State<EditActivityPage> {
                             Get.back();
                           },
                           child: const Text("Actualizar"))),
+                  const SizedBox(width: 350,),
 
                   Expanded(
-                      flex: 2,
+                      flex: 1,
                       child: ElevatedButton(
+                        style:  ElevatedButton.styleFrom(
+                          textStyle: const TextStyle(fontSize: 26),
+                          padding: const EdgeInsets.all(18.0),
+                          foregroundColor: Colors.white,
+                          backgroundColor: const Color.fromARGB(255, 0, 240, 8)
+                        ),
                           onPressed: () async {
                             await actController.updateActivity(Activity(
                                 id: activity.id,

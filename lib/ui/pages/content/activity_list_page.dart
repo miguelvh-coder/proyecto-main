@@ -20,7 +20,7 @@ class ActivityListPage extends StatefulWidget {
 
 class _ActivityListPageState extends State<ActivityListPage> {
   UserController userController = Get.find();
-  //ActivityController actController = Get.find();
+  ActivityController actController = Get.find();
   AuthenticationController authenticationController = Get.find();
 
   _logout() async {
@@ -50,6 +50,9 @@ class _ActivityListPageState extends State<ActivityListPage> {
                 const Text("PENDIENTE", style: TextStyle(color: Color.fromARGB(255, 200, 90, 90), fontSize: 24)),
                 const SizedBox(height: 20),
                 Expanded(child: _getXlistView()),
+                const SizedBox(height: 20),
+                //Expanded(child: Text(actController.rActs.length.toString())),
+                //Expanded(child: Text(userController.users.length.toString())),
                 const Text("FINALIZADO", style: TextStyle(color: Color.fromARGB(255, 90, 200, 90), fontSize: 24)),
                 const SizedBox(height: 20),
                 Expanded(child:_endedActivities()),
@@ -74,15 +77,15 @@ class _ActivityListPageState extends State<ActivityListPage> {
   Widget _getXlistView() {
     return Obx(
       () => ListView.builder(
-        itemCount: userController.users.length,
+        itemCount: actController.rActs.length,  //gActs
         itemBuilder: (context, index) {
-          User user = userController.users[index];
+          Activity gactivity = actController.rActs[index];
           return Dismissible(
             key: UniqueKey(),
             background: Container(
                 color: Colors.red,
                 alignment: Alignment.centerLeft,
-                child: const Padding(
+                child: const Padding( 
                   padding: EdgeInsets.only(left: 20),
                   child: Text(
                     "Deleting",
@@ -90,17 +93,17 @@ class _ActivityListPageState extends State<ActivityListPage> {
                   ),
                 )),
             onDismissed: (direction) {
-              userController.deleteUser(user.id!);
+              actController.deleteAct(gactivity.id!);
             },
             child: Card(
               shadowColor: const Color.fromARGB(255, 255, 81, 81),
               color: const Color.fromARGB(180, 255, 255, 255),
               child: ListTile(
-                title: const Text("proyecto"), //user.name
-                subtitle: const Text("Hacer la app de móvil"), //user.email
+                title: Text(gactivity.name), //user.name
+                subtitle: Text(gactivity.date), //user.email
                 onTap: () {
-                  Get.to(() => const EditUserPage(),
-                      arguments: [user, user.id]);
+                  Get.to(() => const EditActivityPage(),
+                      arguments: [gactivity, gactivity.id]);
                 },
               ),
             ),
