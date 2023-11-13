@@ -19,8 +19,8 @@ class Activity {
         id: json["id"],
         name: json["name"] ?? "somename",
         description: json["description"] ?? "description",
-        date: json["date"] ?? "date",
-        location: json["location"] ?? "0/0/00",
+        date: json["date"] ?? "0/0/00",
+        location: json["location"] ?? "aqui",
         ended: json["ended"] ?? false
       );
 

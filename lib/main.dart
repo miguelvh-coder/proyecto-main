@@ -1,4 +1,5 @@
 import 'package:f_web_authentication/domain/use_case/user_usecase.dart';
+import 'package:f_web_authentication/domain/use_case/activity_usecase.dart';
 import 'package:f_web_authentication/ui/central.dart';
 import 'package:f_web_authentication/ui/controller/authentication_controller.dart';
 import 'package:f_web_authentication/ui/controller/user_controller.dart';
@@ -16,17 +17,17 @@ void main() {
       showColors: true,
     ),
   );
-
   Get.put(Repository());
   Get.put(AuthenticationUseCase());
   Get.put(UserUseCase());
+  Get.put(ActivityUseCase());
   Get.put(AuthenticationController());
   Get.put(UserController());
-  //Get.put(ActivityController());
+  Get.put(ActivityController());
   runApp(const MyApp());
 }
 
-//NOTA: Get.put(ActivityController()); genera conflicto
+//NOTA: Get.put(ActivityController()); genera conflicto?
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

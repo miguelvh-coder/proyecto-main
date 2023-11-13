@@ -5,6 +5,8 @@ import '../../domain/models/activity.dart';
 import '../../domain/use_case/activity_usecase.dart';
 
 class ActivityController extends GetxController {
+
+  final RxList<Activity> generalActivities = <Activity>[].obs;
   final RxList<Activity> _endedActivities = <Activity>[].obs;
   final RxList<Activity> _goingActivities = <Activity>[].obs;
   final ActivityUseCase activityUseCase = Get.find();
@@ -12,6 +14,7 @@ class ActivityController extends GetxController {
   List<Activity> get eActs => _endedActivities;
   List<Activity> get gActs => _goingActivities;
   //hay cosas que arreglar en los objetos de datos y relaciones
+  
   @override
   void onInit() {
     getActs();
@@ -20,7 +23,15 @@ class ActivityController extends GetxController {
 
   getActs() async {
     logInfo("Getting activities");
-    _endedActivities.value = await activityUseCase.getActivities();
+    generalActivities.value = await activityUseCase.getActivities();
+
+    for (var index = 0; index == generalActivities.length; index++) {
+      if(generalActivities[index].ended==true){
+        _endedActivities.add(generalActivities[index]);
+      }else{
+        _goingActivities.add(generalActivities[index]);
+      }
+    }
   }
 
   addEAct(Activity activity) async {

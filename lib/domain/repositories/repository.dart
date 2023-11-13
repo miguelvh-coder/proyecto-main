@@ -18,6 +18,7 @@ class Repository {
   Repository() {
     _authenticationDataSource = AuthenticationDatatasource();
     _userDatatasource = UserDataSource();
+    _actDatatasource = ActivityDataSource();
   }
 
   Future<bool> login(String email, String password) async {
@@ -29,6 +30,8 @@ class Repository {
       await _authenticationDataSource.signUp(_baseUrl, email, password);
 
   Future<bool> logOut() async => await _authenticationDataSource.logOut();
+
+
 
   Future<List<User>> getUsers() async => await _userDatatasource.getUsers();
 
