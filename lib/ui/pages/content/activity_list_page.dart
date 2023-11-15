@@ -43,7 +43,7 @@ class _ActivityListPageState extends State<ActivityListPage> {
             }),
       ]),
       body: Container(
-        
+        //obx
           padding: const EdgeInsets.all(60),
           child: Center(
             child: Column(
