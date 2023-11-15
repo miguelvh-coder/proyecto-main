@@ -1,6 +1,8 @@
 import 'package:f_web_authentication/domain/models/activity.dart';
+import 'package:f_web_authentication/ui/pages/content/chat_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loggy/loggy.dart';
 
 import '../../controller/activity_controller.dart';
 
@@ -33,8 +35,11 @@ class _EditUserPageState extends State<EditActivityPage> {
         padding: const EdgeInsets.all(30.0),
         child: Column(
           children: [
+            Container(
+              child: activity.ended==false ? Text('show') : null,
+            ),
             const SizedBox(
-              height: 20,
+              height: 40,
             ),
             Text(activity.name, style: const TextStyle(color: Color.fromARGB(255, 30, 30, 100), fontSize: 24)), 
             const SizedBox(
@@ -49,7 +54,7 @@ class _EditUserPageState extends State<EditActivityPage> {
             const SizedBox(
               height: 20,
             ),
-
+            
             TextField(
                 controller: controllerLocation,
                 //keyboardType: TextInputType.emailAddress,
@@ -69,12 +74,13 @@ class _EditUserPageState extends State<EditActivityPage> {
               height: 100,
             ),
 
-
+            
             Padding(
               padding: const EdgeInsets.all(30.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+                  if(activity.ended)...[const SizedBox(width: 350),],
                   Expanded(
                       flex: 1,
                       child: ElevatedButton(
@@ -89,12 +95,13 @@ class _EditUserPageState extends State<EditActivityPage> {
                                 description: controllerDescription.text,
                                 date: controllerDate.text,
                                 location: controllerLocation.text,
-                                ended: false));
+                                ended: activity.ended));
                             Get.back();
                           },
                           child: const Text("Actualizar"))),
                   const SizedBox(width: 350,),
 
+                  if(!activity.ended)...[
                   Expanded(
                       flex: 1,
                       child: ElevatedButton(
@@ -114,12 +121,21 @@ class _EditUserPageState extends State<EditActivityPage> {
                                 ended: true));
                             Get.back();
                           },
-                          child: const Text("Finalizar actividad"))),
+                          child: const Text("Finalizar actividad"))),]
                 ],
               ),
             )
           ],
         ),
+      ),
+
+      //chat
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          logInfo("Going to chat");
+          Get.to(() => const ChatPage(), arguments: [activity, activity.id]);
+        },
+        child: const Icon(Icons.message),
       ),
     );
   }
