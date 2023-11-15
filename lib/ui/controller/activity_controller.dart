@@ -25,7 +25,7 @@ class ActivityController extends GetxController {
   getActs() async {
     logInfo("Getting activities");
     _generalActivities.value = await activityUseCase.getActivities();
-
+    //se deben reiniciar las listas o se repetiran al hacer cambios.
     for (var index = 0; index < _generalActivities.length; index++) {
       if(_generalActivities[index].ended==true){
         //logInfo(_generalActivities[index]);
