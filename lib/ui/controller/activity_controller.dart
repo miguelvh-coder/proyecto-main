@@ -36,6 +36,8 @@ class ActivityController extends GetxController {
         _goingActivities.add(_generalActivities[index]);
       }
     }
+
+    
   }
 
   addEAct(Activity activity) async {

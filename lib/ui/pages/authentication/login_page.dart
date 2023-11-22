@@ -124,7 +124,8 @@ class _LoginPageState extends State<LoginPage> {
                               padding: const EdgeInsets.all(14.0),
                               textStyle: const TextStyle(fontSize: 18),
                             ),
-                          child: const Text("Ingresar")),
+                            child: const Text("Ingresar")
+                          ),
                         ],
                       ),
                     ),

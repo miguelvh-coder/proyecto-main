@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controller/activity_controller.dart';
+import '../../controller/location_controller.dart';
 
 class NewActivityPage extends StatefulWidget {
   const NewActivityPage({Key? key}) : super(key: key);
@@ -16,6 +17,9 @@ class _NewActivityPageState extends State<NewActivityPage> {
   final controllerDescription = TextEditingController();
   final controllerDate = TextEditingController();
   final controllerLocation = TextEditingController();
+
+  final controllerLatitud = TextEditingController();
+  final controllerLongitud = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +48,13 @@ class _NewActivityPageState extends State<NewActivityPage> {
                 )),
             const SizedBox(height: 30,),
 
-            TextField(
+            location(),
+            /*TextField(
                 controller: controllerLocation,
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
                   labelText: 'Lugar de realización',
-                )),
+                )),*/
             const SizedBox(height: 30,),
 
             TextField(
@@ -58,14 +63,15 @@ class _NewActivityPageState extends State<NewActivityPage> {
                 decoration: const InputDecoration(
                   labelText: 'Descripción de la actividad',
                 )),
-            const SizedBox(height: 80,),
+            const Expanded(child: SizedBox(height: 30)),
 
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  const SizedBox(width: 400,),
+                  const Expanded(flex:1,child: SizedBox(width: 50)),
+
                   Expanded(
                       flex: 2,
                       child: ElevatedButton(
@@ -83,7 +89,8 @@ class _NewActivityPageState extends State<NewActivityPage> {
                             Get.back();
                           },
                           child: const Text("Guardar"))),
-                    const SizedBox(width: 400,),
+
+                    const Expanded(flex:1,child: SizedBox(width: 50)),
                 ],
               ),
             )
@@ -92,4 +99,80 @@ class _NewActivityPageState extends State<NewActivityPage> {
       ),
     );
   }
+
+
+  location(){
+    LocationController locationController = Get.find();
+
+    return Column(
+      children: <Widget>[
+
+        ExpansionTile(
+          title: Text('Lugar'),
+          children: [
+            Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextField(
+                            controller: controllerLatitud,
+                            decoration: const InputDecoration(labelText: 'Latitud',border: OutlineInputBorder(),),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextField(
+                            controller: controllerLongitud,
+                            decoration: const InputDecoration(labelText: 'Longitud',border: OutlineInputBorder(),),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 10),
+
+                  TextButton(
+                    style: TextButton.styleFrom(
+                            backgroundColor: Colors.lightBlue,
+                            foregroundColor: Colors.white,
+                            padding: const EdgeInsets.all(12.0),
+                            textStyle: const TextStyle(fontSize: 16),
+                    ),
+                    onPressed: () async {
+                      FocusScope.of(context).requestFocus(FocusNode());
+                            try {
+                              await locationController.getLocation(0,0,false);
+                              var lat1 = locationController.userLocation.value.latitude;
+                              var lon1 = locationController.userLocation.value.longitude;
+                              String latitud = lat1.toString();
+                              String longitud = lon1.toString();
+                              controllerLatitud.text = latitud;
+                              controllerLongitud.text = longitud;
+                            } catch (e) {
+                              Get.snackbar('Error.....', e.toString(),
+                              backgroundColor: Colors.red,
+                              colorText: Colors.white);
+                            }
+                    },
+                    child: const Text("Usar ubicación actual")
+                  )
+
+                ]
+              )
+
+
+          ],
+        )
+
+      ]
+    );
+  }
+
 }
