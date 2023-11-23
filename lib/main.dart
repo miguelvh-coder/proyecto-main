@@ -14,6 +14,7 @@ import 'domain/use_case/authentication_usecase.dart';
 import 'domain/use_case/locator_service.dart';
 
 void main() {
+  //WidgetsFlutterBinding.ensureInitialized();
   Loggy.initLoggy(
     logPrinter: const PrettyPrinter(
       showColors: true,

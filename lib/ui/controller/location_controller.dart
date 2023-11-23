@@ -2,9 +2,9 @@ import 'dart:async';
 //import 'dart:ffi';
 import 'package:f_web_authentication/data/datasources/remote/user_location.dart';
 import 'package:f_web_authentication/domain/use_case/locator_service.dart';
-import 'package:flutter/material.dart';
+//import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
+//import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:loggy/loggy.dart';
 import 'dart:math';
 
@@ -28,6 +28,7 @@ class LocationController extends GetxController {
         await service.getLocation().onError((error, stackTrace) {
       return Future.error(error.toString());
     });
+    logInfo(userLocation.value);
     if(calcular==true){_distancia.value = calcularDistancia(lat1, lon1, userLocation.value.latitude, userLocation.value.longitude);}
   }
 

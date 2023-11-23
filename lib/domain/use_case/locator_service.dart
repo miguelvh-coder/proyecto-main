@@ -15,7 +15,6 @@ class LocatorService {
   Future<bool> getPermission() async {
     bool serviceEnabled;
     LocationPermission permission;
-
     // Test if location services are enabled.
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
@@ -24,8 +23,8 @@ class LocatorService {
       // App to enable the location services.
       return Future.error('Location services are disabled.');
     }
-
-    permission = await Geolocator.checkPermission();
+    
+    permission = await Geolocator.checkPermission();//aqui
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
@@ -43,7 +42,6 @@ class LocatorService {
       return Future.error(
           'Location permissions are permanently denied, we cannot request permissions.');
     }
-
     return Future.value(true);
   }
 
