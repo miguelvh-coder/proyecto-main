@@ -46,6 +46,7 @@ class _EditUserPageState extends State<EditActivityPage> {
   final controllerLatitud = TextEditingController();
   final controllerLongitud = TextEditingController();
 
+
   @override
   Widget build(BuildContext context) {
     
@@ -60,7 +61,7 @@ class _EditUserPageState extends State<EditActivityPage> {
     controllerLatitud.text = latitud;
     controllerLongitud.text = longitud;
 
-
+    
     return Scaffold(
       appBar: AppBar(
         title: Text(activity.name),
@@ -175,7 +176,7 @@ class _EditUserPageState extends State<EditActivityPage> {
           controlAffinity: ListTileControlAffinity.leading,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(2.0),
+              padding: const EdgeInsets.all(7.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -239,6 +240,7 @@ class _EditUserPageState extends State<EditActivityPage> {
                         ),
                         const SizedBox(width: 15),
                         //calculo
+                        
                         
                         Expanded(
                           flex:2,

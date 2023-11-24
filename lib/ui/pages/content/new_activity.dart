@@ -12,6 +12,11 @@ class NewActivityPage extends StatefulWidget {
    State<NewActivityPage> createState() => _NewActivityPageState();
 }
 
+String unirCoordenadas(String latitud, String  longitud) {
+  String coordenadas = '$latitud,$longitud';
+  return coordenadas;
+}
+
 class _NewActivityPageState extends State<NewActivityPage> {
   final controllerName = TextEditingController();
   final controllerDescription = TextEditingController();
@@ -49,12 +54,7 @@ class _NewActivityPageState extends State<NewActivityPage> {
             const SizedBox(height: 30,),
 
             location(),
-            /*TextField(
-                controller: controllerLocation,
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                  labelText: 'Lugar de realización',
-                )),*/
+            
             const SizedBox(height: 30,),
 
             TextField(
@@ -84,7 +84,7 @@ class _NewActivityPageState extends State<NewActivityPage> {
                                 name: controllerName.text,
                                 description: controllerDescription.text,
                                 date: controllerDate.text,
-                                location: controllerLocation.text,
+                                location: unirCoordenadas(controllerLatitud.text, controllerLongitud.text),
                                 ended: false));
                             Get.back();
                           },
@@ -108,7 +108,7 @@ class _NewActivityPageState extends State<NewActivityPage> {
       children: <Widget>[
 
         ExpansionTile(
-          title: Text('Lugar'),
+          title: const Text('Lugar'),
           children: [
             Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -162,8 +162,9 @@ class _NewActivityPageState extends State<NewActivityPage> {
                             }
                     },
                     child: const Text("Usar ubicación actual")
-                  )
-
+                  ),
+                  
+                  const SizedBox(height: 10),
                 ]
               )
 
